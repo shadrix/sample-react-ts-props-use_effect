@@ -44,7 +44,7 @@ async function longOperation() : Promise<string> {
   return text;
 }
 
-function App() {
+const App = () => {
   const [loading, setLoading] = useState(true);
   const [header, setHeader] = useState('');
 
