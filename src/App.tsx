@@ -34,21 +34,21 @@ const List = (props: IListProps) => (
   </ListGroup>
 )
 
+function sleep(ms : number) : Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function longOperation() : Promise<string> {
+  const text = "Custom list";
+  await sleep(2000);
+  return text;
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [header, setHeader] = useState('');
 
-  function sleep(ms : number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function longOperation() : Promise<string> {
-    const text = "Custom list";
-    await sleep(2000);
-    return text;
-  }
-
-  // Similar to componentDidMount and componentDidUpdate:
+  // Similar to componentDidMount:
   useEffect(() => {
 
     async function init() {
@@ -58,7 +58,7 @@ function App() {
     }
 
     init();
-  });
+  }, []);
 
   return (
     <Container className="p-3">
